@@ -1,0 +1,669 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Curso gratuito de programação MERCADÃO. Aprenda lógica, HTML, CSS, JavaScript, Python e crie seus primeiros projetos.">
+<title>Curso de Programação | MERCADÃO</title>
+
+<style>
+:root {
+  --bg:#f4f7fc;
+  --card:#ffffff;
+  --text:#172033;
+  --muted:#657086;
+  --blue:#2563eb;
+  --navy:#101827;
+  --line:#e1e7f0;
+  --discord:#5865F2;
+  --green:#16a34a;
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Arial,sans-serif;
+  line-height:1.65;
+}
+header {
+  background:var(--navy);
+  color:white;
+  padding:16px 5%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  flex-wrap:wrap;
+}
+.logo { font-size:21px; font-weight:900; }
+.logo span { color:#60a5fa; }
+nav { display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+nav a {
+  color:#e2e8f0;
+  text-decoration:none;
+  font-size:14px;
+}
+nav a:hover { color:#93c5fd; }
+.discord-btn {
+  display:inline-block;
+  background:var(--discord);
+  color:white !important;
+  padding:10px 15px;
+  border-radius:9px;
+  font-weight:bold;
+  text-decoration:none;
+  transition:.2s;
+}
+.discord-btn:hover { background:#4752c4; transform:translateY(-1px); }
+.hero {
+  background:linear-gradient(130deg,#101827,#1e40af);
+  color:white;
+  padding:70px 6%;
+}
+.hero-inner { max-width:1050px; margin:auto; }
+.tag {
+  display:inline-block;
+  background:#243d70;
+  color:#bfdbfe;
+  padding:6px 12px;
+  border-radius:30px;
+  font-size:12px;
+  font-weight:bold;
+}
+h1 { font-size:clamp(36px,6vw,62px); line-height:1.1; margin:22px 0; }
+.hero p { max-width:700px; color:#dbeafe; font-size:18px; }
+.btn {
+  display:inline-block;
+  background:#60a5fa;
+  color:#101827;
+  border:0;
+  padding:12px 18px;
+  border-radius:9px;
+  font-weight:bold;
+  text-decoration:none;
+  cursor:pointer;
+}
+.btn:hover { filter:brightness(.94); }
+.wrap { max-width:1050px; margin:auto; padding:35px 20px; }
+h2 { font-size:28px; line-height:1.3; }
+.intro { color:var(--muted); max-width:780px; }
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:16px;
+}
+.card {
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:22px;
+}
+.icon { font-size:29px; }
+.small { font-size:13px; color:var(--muted); }
+.pill {
+  display:inline-block;
+  background:#eaf1ff;
+  color:#1d4ed8;
+  padding:4px 9px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:bold;
+}
+.lesson {
+  margin:13px 0;
+  background:white;
+  border:1px solid var(--line);
+  border-radius:12px;
+  overflow:hidden;
+}
+.lesson summary { padding:18px; font-weight:bold; cursor:pointer; }
+.lesson-content { padding:0 20px 22px; }
+.lesson-content li { margin:7px 0; }
+code { background:#edf2f7; padding:2px 5px; border-radius:4px; }
+pre {
+  background:#101827;
+  color:#dbeafe;
+  padding:17px;
+  border-radius:10px;
+  overflow:auto;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+}
+.task {
+  background:#eff6ff;
+  border-left:4px solid var(--blue);
+  padding:13px 16px;
+  border-radius:5px;
+  margin-top:15px;
+}
+.progress { height:10px; background:#e1e7f0; border-radius:20px; overflow:hidden; }
+#bar { height:100%; width:0; background:var(--green); transition:width .2s; }
+.checkrow { display:flex; gap:10px; padding:12px 0; border-bottom:1px solid var(--line); }
+.checkrow input { margin-top:7px; }
+.question { padding:16px 0; border-bottom:1px solid var(--line); }
+.question label { display:block; margin:8px 0; cursor:pointer; }
+textarea {
+  width:100%;
+  min-height:150px;
+  padding:12px;
+  border:1px solid #cbd5e1;
+  border-radius:8px;
+  font:14px monospace;
+}
+#preview {
+  width:100%;
+  height:260px;
+  background:white;
+  border:1px solid #d1d5db;
+  border-radius:8px;
+}
+.discord-section {
+  background:linear-gradient(135deg,#1e293b,#283593);
+  color:white;
+  text-align:center;
+  border-radius:16px;
+  padding:35px 22px;
+}
+.discord-section p { color:#e0e7ff; }
+.discord-large {
+  display:inline-block;
+  background:var(--discord);
+  color:white;
+  padding:14px 22px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:bold;
+}
+.discord-large:hover { background:#4752c4; }
+footer {
+  background:var(--navy);
+  color:#cbd5e1;
+  text-align:center;
+  padding:30px 20px;
+  margin-top:25px;
+}
+@media(max-width:650px) {
+  header { padding:16px 5%; }
+  nav { gap:12px; }
+  .hero { padding:48px 6%; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">🐅 MERCADÃO <span>DEV</span></div>
+  <nav>
+    <a href="#curso">Aulas</a>
+    <a href="#pratica">Praticar</a>
+    <a href="#projetos">Projetos</a>
+    <a href="#plano">30 dias</a>
+    <a href="#teste">Teste</a>
+    <a class="discord-btn" href="https://discord.gg/rxYgAyEpKu" target="_blank" rel="noopener noreferrer">💬 NOSSO DISCORD</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <span class="tag">CURSO GRATUITO • DO ZERO À PRÁTICA</span>
+    <h1>💻 APRENDA<br>A PROGRAMAR</h1>
+    <p>Comece do zero e aprenda lógica de programação, criação de sites, JavaScript, Python e desenvolvimento de projetos próprios.</p>
+    <a class="btn" href="#curso">COMEÇAR O CURSO →</a>
+    <a class="discord-btn" href="https://discord.gg/rxYgAyEpKu" target="_blank" rel="noopener noreferrer">💬 ENTRAR NO DISCORD</a>
+    <p class="small">Aulas • Exemplos • Exercícios • Projetos • Comunidade</p>
+  </div>
+</section>
+
+<section class="wrap">
+  <h2>Bem-vindo ao curso!</h2>
+  <p class="intro">Você não precisa ter experiência para começar. Estude um módulo por vez, pratique os exemplos e avance no seu ritmo.</p>
+  <div class="grid">
+    <div class="card"><div class="icon">🧠</div><h3>Lógica</h3><p class="small">Aprenda a resolver problemas passo a passo.</p></div>
+    <div class="card"><div class="icon">🌐</div><h3>Sites</h3><p class="small">Crie páginas com HTML, CSS e JavaScript.</p></div>
+    <div class="card"><div class="icon">🐍</div><h3>Python</h3><p class="small">Conheça uma linguagem versátil.</p></div>
+    <div class="card"><div class="icon">🚀</div><h3>Projetos</h3><p class="small">Transforme o que aprendeu em prática.</p></div>
+  </div>
+</section>
+
+<section class="wrap" id="curso">
+  <h2>📚 Módulos do curso</h2>
+  <p class="intro">Clique em cada aula para abrir o conteúdo. Faça as atividades antes de avançar para o próximo assunto.</p>
+
+  <details class="lesson" open>
+    <summary>01 — O que é programação?</summary>
+    <div class="lesson-content">
+      <p>Programar é escrever instruções para que o computador execute tarefas. A programação é usada para criar sites, jogos, aplicativos, ferramentas e sistemas.</p>
+      <ul>
+        <li><b>Front-end:</b> a parte do site que o usuário vê e utiliza.</li>
+        <li><b>Back-end:</b> a parte que processa informações no servidor.</li>
+        <li><b>Banco de dados:</b> armazena informações organizadas.</li>
+        <li><b>Linguagem:</b> uma forma de escrever instruções para executar tarefas.</li>
+      </ul>
+      <p>Vamos começar com desenvolvimento web, porque você pode visualizar seus primeiros resultados no navegador.</p>
+      <div class="task"><b>Atividade:</b> escreva três coisas que gostaria de criar usando programação.</div>
+    </div>
+  </details>
+
+  <details class="lesson">
+    <summary>02 — Lógica de programação</summary>
+    <div class="lesson-content">
+      <p>Um algoritmo é uma sequência de passos para resolver um problema.</p>
+      <p>Para somar dois números, por exemplo, você recebe os valores, soma e mostra o resultado.</p>
+      <p>Os conceitos básicos são:</p>
+      <ul>
+        <li><b>Variáveis:</b> guardam valores.</li>
+        <li><b>Condições:</b> permitem tomar decisões.</li>
+        <li><b>Repetições:</b> executam instruções várias vezes.</li>
+        <li><b>Funções:</b> agrupam instruções reutilizáveis.</li>
+      </ul>
+      <pre>let numero = 10;
+
+if (numero > 0) {
+  console.log("Número positivo");
+} else {
+  console.log("Número zero ou negativo");
+}</pre>
+      <div class="task"><b>Atividade:</b> altere o número e observe como a mensagem muda.</div>
+    </div>
+  </details>
+
+  <details class="lesson">
+    <summary>03 — HTML: estrutura dos sites</summary>
+    <div class="lesson-content">
+      <p>HTML organiza o conteúdo da página, incluindo títulos, parágrafos, imagens, links e botões.</p>
+      <pre>&lt;h1&gt;Meu primeiro site&lt;/h1&gt;
+&lt;p&gt;Estou aprendendo programação!&lt;/p&gt;
+&lt;a href="https://example.com"&gt;Meu link&lt;/a&gt;</pre>
+      <ul>
+        <li><code>h1</code>: título principal.</li>
+        <li><code>p</code>: parágrafo.</li>
+        <li><code>a</code>: link.</li>
+        <li><code>img</code>: imagem.</li>
+        <li><code>button</code>: botão.</li>
+      </ul>
+      <p>Uma página completa utiliza estruturas como <code>html</code>, <code>head</code> e <code>body</code>.</p>
+      <div class="task"><b>Atividade:</b> crie um título, um parágrafo e um link sobre um assunto de que você gosta.</div>
+    </div>
+  </details>
+
+  <details class="lesson">
+    <summary>04 — CSS: cores, estilos e layouts</summary>
+    <div class="lesson-content">
+      <p>CSS controla a aparência de um site: cores, fontes, tamanhos, alinhamento, espaçamento e adaptação para celular.</p>
+      <pre>body {
+  background: #f4f7fc;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  color: #2563eb;
+  text-align: center;
+}
+
+button {
+  padding: 12px 20px;
+  border-radius: 8px;
+}</pre>
+      <p>Você também pode aprender Flexbox, Grid e media queries para construir layouts organizados e responsivos.</p>
+      <div class="task"><b>Atividade:</b> mude as cores do exemplo e deixe o botão arredondado.</div>
+    </div>
+  </details>
+
+  <details class="lesson">
+    <summary>05 — JavaScript: interatividade</summary>
+    <div class="lesson-content">
+      <p>JavaScript permite responder a cliques, calcular valores, validar formulários e atualizar elementos da página.</p>
+      <pre>const nome = "MERCADÃO";
+
+function cumprimentar(pessoa) {
+  return "Olá, " + pessoa + "!";
+}
+
+console.log(cumprimentar(nome));</pre>
+      <p>Estude variáveis, tipos de dados, operadores, condições, repetições, funções, arrays e objetos.</p>
+      <p>O DOM permite que o JavaScript encontre e modifique elementos HTML.</p>
+      <pre>document.querySelector("button")
+  .addEventListener("click", function() {
+    alert("Você clicou no botão!");
+  });</pre>
+      <div class="task"><b>Atividade:</b> crie um botão que mostre uma mensagem quando for clicado.</div>
+    </div>
+  </details>
+
+  <details class="lesson">
+    <summary>06 — Python: introdução</summary>
+    <div class="lesson-content">
+      <p>Python é usado em automação, análise de dados, desenvolvimento web e outras áreas.</p>
+      <pre>nome = input("Qual é o seu nome? ")
+print("Olá,", nome)
+
+numero = int(input("Digite um número: "))
+
+if numero % 2 == 0:
+    print("Número par")
+else:
+    print("Número ímpar")</pre>
+      <p>Estude variáveis, condições, repetições, listas, dicionários e funções.</p>
+      <p>Para executar Python, utilize uma instalação do Python ou um ambiente online compatível. Ele não é executado diretamente pelo navegador como HTML.</p>
+      <div class="task"><b>Atividade:</b> faça um programa que pergunte o nome e mostre uma saudação.</div>
+    </div>
+  </details>
+
+  <details class="lesson">
+    <summary>07 — Git e GitHub</summary>
+    <div class="lesson-content">
+      <p>Git registra alterações no código. GitHub permite guardar projetos online e colaborar com outras pessoas.</p>
+      <pre>git init
+git add .
+git commit -m "Meu primeiro projeto"
+git status</pre>
+      <ul>
+        <li><code>git init</code>: inicia um repositório.</li>
+        <li><code>git add</code>: prepara alterações.</li>
+        <li><code>git commit</code>: registra alterações.</li>
+        <li><code>git status</code>: mostra o estado dos arquivos.</li>
+        <li><code>git push</code>: envia alterações para um repositório remoto configurado.</li>
+      </ul>
+      <p>O GitHub Pages pode publicar sites estáticos. Sistemas que precisam de servidor e banco de dados exigem uma solução de hospedagem adequada.</p>
+      <div class="task"><b>Atividade:</b> organize um projeto em uma pasta e crie um repositório para guardar seus arquivos.</div>
+    </div>
+  </details>
+
+  <details class="lesson">
+    <summary>08 — Banco de dados e SQL</summary>
+    <div class="lesson-content">
+      <p>Bancos de dados guardam informações para que os sistemas possam consultar, inserir e atualizar dados.</p>
+      <pre>CREATE TABLE alunos (
+  id INTEGER PRIMARY KEY,
+  nome TEXT,
+  curso TEXT
+);
+
+INSERT INTO alunos (id, nome, curso)
+VALUES (1, 'Ana', 'Programação');
+
+SELECT * FROM alunos;</pre>
+      <p>Aprenda tabelas, colunas, linhas, chaves, consultas e operações de atualização.</p>
+      <div class="task"><b>Atividade:</b> planeje uma tabela para registrar alunos, cursos e datas de matrícula.</div>
+    </div>
+  </details>
+
+  <details class="lesson">
+    <summary>09 — Back-end e APIs</summary>
+    <div class="lesson-content">
+      <p>O back-end processa dados no servidor. Uma API permite que sistemas troquem informações.</p>
+      <p>Estude requisições HTTP, rotas, JSON, validação e tratamento de erros. Node.js permite executar JavaScript no servidor; Python também pode ser usado para construir back-ends.</p>
+      <pre>fetch("https://jsonplaceholder.typicode.com/posts/1")
+  .then(resposta => resposta.json())
+  .then(dados => console.log(dados))
+  .catch(erro => console.log("Erro:", erro));</pre>
+      <p>O exemplo utiliza uma API de demonstração. Em projetos reais, trate falhas e valide os dados recebidos.</p>
+      <div class="task"><b>Atividade:</b> explique com suas palavras a diferença entre front-end e back-end.</div>
+    </div>
+  </details>
+
+  <details class="lesson">
+    <summary>10 — Segurança e boas práticas</summary>
+    <div class="lesson-content">
+      <ul>
+        <li>Valide os dados recebidos pelos formulários.</li>
+        <li>Não exponha senhas, tokens ou chaves privadas.</li>
+        <li>Use autenticação adequada em sistemas com contas.</li>
+        <li>Trate erros sem revelar informações sensíveis.</li>
+        <li>Faça cópias de segurança quando necessário.</li>
+        <li>Escreva código organizado e teste as funcionalidades.</li>
+      </ul>
+      <p>Segurança faz parte do desenvolvimento desde o início, não apenas quando o projeto fica pronto.</p>
+      <div class="task"><b>Atividade:</b> liste três cuidados importantes antes de publicar um site.</div>
+    </div>
+  </details>
+
+  <details class="lesson">
+    <summary>11 — Depuração e resolução de erros</summary>
+    <div class="lesson-content">
+      <p>Depurar significa investigar por que um programa não funciona como esperado.</p>
+      <ol>
+        <li>Leia a mensagem de erro.</li>
+        <li>Confira a linha indicada.</li>
+        <li>Verifique nomes, parênteses e chaves.</li>
+        <li>Teste uma alteração por vez.</li>
+        <li>Utilize o console para conferir valores.</li>
+      </ol>
+      <pre>let resultado = 10 / 2;
+console.log(resultado); // 5</pre>
+      <div class="task"><b>Atividade:</b> crie uma variável e use <code>console.log()</code> para conferir seu valor.</div>
+    </div>
+  </details>
+
+  <details class="lesson">
+    <summary>12 — Portfólio e próximos passos</summary>
+    <div class="lesson-content">
+      <p>Um portfólio reúne projetos que demonstram suas habilidades. Comece com coisas pequenas e evolua conforme aprende.</p>
+      <ul>
+        <li>Uma página pessoal com HTML e CSS.</li>
+        <li>Uma calculadora com JavaScript.</li>
+        <li>Um quiz com pontuação.</li>
+        <li>Uma lista de tarefas.</li>
+        <li>Um programa simples em Python.</li>
+      </ul>
+      <p>Descreva o que cada projeto faz, as tecnologias utilizadas e o que você aprendeu.</p>
+      <div class="task"><b>Atividade:</b> escolha um projeto e construa a primeira versão.</div>
+    </div>
+  </details>
+</section>
+
+<section class="wrap" id="pratica">
+  <h2>⌨️ Laboratório de programação</h2>
+  <p class="intro">Escreva HTML, CSS e JavaScript no editor abaixo e veja o resultado. O código é executado em uma prévia isolada.</p>
+  <div class="card">
+    <label for="codeEditor"><b>Seu código HTML</b></label>
+    <textarea id="codeEditor" spellcheck="false"><h1>Meu primeiro projeto!</h1>
+<p>Estou aprendendo a programar.</p>
+<button onclick="document.getElementById('mensagem').textContent='Funcionou!'">Clique aqui</button>
+<p id="mensagem"></p>
+<style>
+body { font-family: Arial; padding: 15px; }
+h1 { color: royalblue; }
+button { padding: 10px; cursor: pointer; }
+</style></textarea>
+    <p><button class="btn" type="button" onclick="runCode()">▶ EXECUTAR CÓDIGO</button></p>
+    <p class="small">Prévia do projeto:</p>
+    <iframe id="preview" title="Prévia do seu código" sandbox="allow-scripts"></iframe>
+  </div>
+</section>
+
+<section class="wrap" id="projetos">
+  <h2>🚀 Projetos para praticar</h2>
+  <div class="grid">
+    <div class="card">
+      <span class="pill">Iniciante</span>
+      <h3>🪪 Página pessoal</h3>
+      <p>Crie uma página com apresentação, links e suas habilidades.</p>
+      <p class="small">Pratique HTML e CSS.</p>
+    </div>
+    <div class="card">
+      <span class="pill">Iniciante</span>
+      <h3>🧮 Calculadora</h3>
+      <p>Receba dois números e permita realizar operações matemáticas.</p>
+      <p class="small">Pratique JavaScript e lógica.</p>
+    </div>
+    <div class="card">
+      <span class="pill">Intermediário</span>
+      <h3>✅ Lista de tarefas</h3>
+      <p>Adicione, conclua e remova tarefas de uma lista.</p>
+      <p class="small">Pratique DOM e eventos.</p>
+    </div>
+    <div class="card">
+      <span class="pill">Intermediário</span>
+      <h3>🧠 Quiz interativo</h3>
+      <p>Crie perguntas, calcule pontos e mostre o resultado.</p>
+      <p class="small">Pratique arrays, funções e condições.</p>
+    </div>
+    <div class="card">
+      <span class="pill">Intermediário</span>
+      <h3>🌐 App com API</h3>
+      <p>Consulte uma API pública e mostre os dados na página.</p>
+      <p class="small">Pratique fetch e JSON.</p>
+    </div>
+    <div class="card">
+      <span class="pill">Avançado</span>
+      <h3>🗂️ Sistema de cadastro</h3>
+      <p>Planeje formulários, validação, back-end e banco de dados.</p>
+      <p class="small">Pratique arquitetura e segurança.</p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" id="plano">
+  <h2>📅 Plano de estudos de 30 dias</h2>
+  <p class="intro">Marque cada etapa conforme concluir. Você pode repetir as aulas e ajustar o ritmo de acordo com seu aprendizado.</p>
+  <div class="card">
+    <div class="progress"><div id="bar"></div></div>
+    <p id="progressText" class="small">0 de 15 etapas concluídas</p>
+    <div id="tasks">
+      <label class="checkrow"><input type="checkbox"><span><b>Dias 1–2:</b> conhecer programação e lógica.</span></label>
+      <label class="checkrow"><input type="checkbox"><span><b>Dias 3–4:</b> praticar variáveis, condições e funções.</span></label>
+      <label class="checkrow"><input type="checkbox"><span><b>Dias 5–7:</b> aprender HTML e criar uma página.</span></label>
+      <label class="checkrow"><input type="checkbox"><span><b>Dias 8–10:</b> estudar CSS e layouts responsivos.</span></label>
+      <label class="checkrow"><input type="checkbox"><span><b>Dias 11–13:</b> estudar JavaScript básico.</span></label>
+      <label class="checkrow"><input type="checkbox"><span><b>Dias 14–15:</b> praticar eventos e DOM.</span></label>
+      <label class="checkrow"><input type="checkbox"><span><b>Dias 16–17:</b> criar uma calculadora.</span></label>
+      <label class="checkrow"><input type="checkbox"><span><b>Dias 18–19:</b> conhecer Python e criar um programa.</span></label>
+      <label class="checkrow"><input type="checkbox"><span><b>Dia 20:</b> conhecer Git e GitHub.</span></label>
+      <label class="checkrow"><input type="checkbox"><span><b>Dias 21–22:</b> estudar banco de dados e SQL.</span></label>
+      <label class="checkrow"><input type="checkbox"><span><b>Dias 23–24:</b> entender APIs e back-end.</span></label>
+      <label class="checkrow"><input type="checkbox"><span><b>Dia 25:</b> revisar segurança e boas práticas.</span></label>
+      <label class="checkrow"><input type="checkbox"><span><b>Dias 26–27:</b> desenvolver um projeto próprio.</span></label>
+      <label class="checkrow"><input type="checkbox"><span><b>Dia 28:</b> testar e corrigir erros.</span></label>
+      <label class="checkrow"><input type="checkbox"><span><b>Dias 29–30:</b> organizar o portfólio e planejar os próximos estudos.</span></label>
+    </div>
+    <button class="btn" type="button" onclick="resetTasks()" style="margin-top:18px">REINICIAR PLANO</button>
+  </div>
+</section>
+
+<section class="wrap" id="teste">
+  <h2>🧠 Teste seus conhecimentos</h2>
+  <p class="intro">Responda às cinco perguntas e veja sua pontuação.</p>
+  <div class="card">
+    <form id="quiz">
+      <div class="question">
+        <b>1. Para que serve o HTML?</b>
+        <label><input type="radio" name="q1" value="a"> Estruturar o conteúdo de uma página.</label>
+        <label><input type="radio" name="q1" value="b"> Guardar senhas secretas.</label>
+        <label><input type="radio" name="q1" value="c"> Substituir todos os bancos de dados.</label>
+      </div>
+      <div class="question">
+        <b>2. Qual tecnologia é usada principalmente para estilizar sites?</b>
+        <label><input type="radio" name="q2" value="a"> SQL</label>
+        <label><input type="radio" name="q2" value="b"> CSS</label>
+        <label><input type="radio" name="q2" value="c"> Git</label>
+      </div>
+      <div class="question">
+        <b>3. Para que serve uma função?</b>
+        <label><input type="radio" name="q3" value="a"> Desligar a internet.</label>
+        <label><input type="radio" name="q3" value="b"> Apagar automaticamente todos os erros.</label>
+        <label><input type="radio" name="q3" value="c"> Agrupar instruções reutilizáveis.</label>
+      </div>
+      <div class="question">
+        <b>4. Para que serve um banco de dados?</b>
+        <label><input type="radio" name="q4" value="a"> Somente para mudar cores.</label>
+        <label><input type="radio" name="q4" value="b"> Armazenar e consultar informações.</label>
+        <label><input type="radio" name="q4" value="c"> Substituir o HTML.</label>
+      </div>
+      <div class="question">
+        <b>5. O que é Git?</b>
+        <label><input type="radio" name="q5" value="a"> Um sistema de controle de versões.</label>
+        <label><input type="radio" name="q5" value="b"> Uma linguagem de marcação.</label>
+        <label><input type="radio" name="q5" value="c"> Um banco de dados.</label>
+      </div>
+      <button type="button" class="btn" onclick="gradeQuiz()">VER RESULTADO</button>
+      <p id="result" aria-live="polite"></p>
+      <div id="explanations" class="small"></div>
+    </form>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="discord-section">
+    <div style="font-size:42px">💬</div>
+    <h2>ENTRE NO DISCORD DO MERCADÃO!</h2>
+    <p>Faça parte da nossa comunidade, converse com outros membros e acompanhe as novidades.</p>
+    <a class="discord-large" href="https://discord.gg/rxYgAyEpKu" target="_blank" rel="noopener noreferrer">🚀 ENTRAR NO NOSSO DISCORD</a>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="card">
+    <h2>🏁 Sua jornada começa aqui</h2>
+    <p>Você não precisa aprender tudo de uma vez. Domine os fundamentos, pratique e construa projetos pequenos antes de avançar para os mais complexos.</p>
+    <a class="btn" href="#curso">REVISAR AS AULAS</a>
+    <a class="discord-btn" href="https://discord.gg/rxYgAyEpKu" target="_blank" rel="noopener noreferrer">💬 NOSSO DISCORD</a>
+  </div>
+</section>
+
+<footer>
+  <strong>🐅 MERCADÃO DEV</strong>
+  <p>Aprenda • Pratique • Desenvolva</p>
+  <p><a href="https://discord.gg/rxYgAyEpKu" target="_blank" rel="noopener noreferrer" style="color:#a5b4fc">Discord do MERCADÃO</a></p>
+  <p class="small">Curso educativo para iniciantes. Continue praticando e consulte a documentação oficial para aprofundar seus estudos.</p>
+</footer>
+
+<script>
+function runCode() {
+  const code = document.getElementById("codeEditor").value;
+  document.getElementById("preview").srcdoc = code;
+}
+runCode();
+
+const checks = [...document.querySelectorAll('#tasks input[type="checkbox"]')];
+
+function updateProgress() {
+  const done = checks.filter(c => c.checked).length;
+  document.getElementById("bar").style.width =
+    (done / checks.length * 100) + "%";
+  document.getElementById("progressText").textContent =
+    `${done} de ${checks.length} etapas concluídas`;
+}
+
+checks.forEach(c => c.addEventListener("change", updateProgress));
+
+function resetTasks() {
+  checks.forEach(c => c.checked = false);
+  updateProgress();
+}
+
+function gradeQuiz() {
+  const answers = {q1:"a", q2:"b", q3:"c", q4:"b", q5:"a"};
+  const explanations = [
+    "1. HTML organiza o conteúdo da página.",
+    "2. CSS controla a aparência e os estilos.",
+    "3. Funções agrupam instruções reutilizáveis.",
+    "4. Bancos de dados armazenam e permitem consultar informações.",
+    "5. Git registra alterações no código."
+  ];
+  let score = 0;
+
+  for (const [question, answer] of Object.entries(answers)) {
+    const chosen = document.querySelector(
+      `input[name="${question}"]:checked`
+    );
+    if (chosen && chosen.value === answer) score++;
+  }
+
+  document.getElementById("result").textContent =
+    `Você acertou ${score} de 5 perguntas!`;
+
+  document.getElementById("explanations").innerHTML =
+    explanations.join("<br>") +
+    (score === 5
+      ? "<br><br>Parabéns! Você acertou todas as perguntas!"
+      : "<br><br>Revise as aulas e tente novamente.");
+}
+</script>
+
+</body>
+</html>
